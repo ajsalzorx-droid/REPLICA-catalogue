@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Replica Gallery showcases a curated visual catalogue with premium presentation and WhatsApp enquiry."
+    />
+    <title>Replica Gallery | Premium Replica Collection</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ffffff'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='30' font-weight='700' text-anchor='middle' fill='%23b8221f'%3ERG%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Replica Gallery home">
+        <img src="assets/brand/replica-gallery-logo.png" alt="Replica Gallery" />
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#categories">Categories</a>
+        <a href="#catalogue">Catalogue</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <p class="eyebrow">Luxury inspired catalogue</p>
+          <h1>Premium Replica Collection</h1>
+          <p class="hero-copy">Explore a curated visual catalogue with polished presentation and easy enquiry.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#catalogue">View Catalogue</a>
+            <a class="button button-ghost" data-whatsapp="Premium Replica Collection" href="#">Contact on WhatsApp</a>
+          </div>
+        </div>
+        <div class="hero-showcase" aria-label="Featured catalogue preview">
+          <div class="showcase-card showcase-card-large">
+            <img src="assets/catalogue/09_Display_Showroom_Marketing/IMG-20260621-WA0133.jpg" alt="Display catalogue preview" />
+            <span>Display Catalogue</span>
+          </div>
+          <div class="showcase-stack">
+            <div class="showcase-card showcase-card-small">
+              <img src="assets/catalogue/02_Cakes_Desserts_Sweets/IMG-20260621-WA0141.jpg" alt="Cakes and sweets catalogue preview" />
+              <span>Cakes & Sweets</span>
+            </div>
+            <div class="showcase-card showcase-card-small accent">
+              <img src="assets/catalogue/08_Keychains_Accessories/IMG-20260621-WA0134.jpg" alt="Accessories catalogue preview" />
+              <span>Accessories</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="categories" aria-labelledby="categories-title">
+        <div class="section-heading">
+          <p class="eyebrow">Browse by collection</p>
+          <h2 id="categories-title">Categories</h2>
+        </div>
+        <div class="category-grid" id="categoryGrid"></div>
+      </section>
+
+      <section class="section section-dark" id="catalogue" aria-labelledby="catalogue-title">
+        <div class="section-heading catalogue-heading">
+          <div>
+            <p class="eyebrow">Curated selection</p>
+            <h2 id="catalogue-title">Product Catalogue</h2>
+          </div>
+          <label class="search-wrap" for="productSearch">
+            <span>Search</span>
+            <input id="productSearch" type="search" placeholder="Search products" autocomplete="off" />
+          </label>
+        </div>
+        <div class="filter-row" id="filterRow" aria-label="Filter products by category"></div>
+        <div class="product-grid" id="productGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>No products match your search.</p>
+      </section>
+
+      <section class="section split-section" id="about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <p class="eyebrow">About us</p>
+          <h2 id="about-title">Premium Presentation</h2>
+        </div>
+        <p class="about-copy">
+          We provide a carefully selected catalogue of stylish products with premium presentation and easy customer
+          enquiry.
+        </p>
+      </section>
+
+      <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="section-heading">
+          <p class="eyebrow">Get in touch</p>
+          <h2 id="contact-title">Contact</h2>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-panel">
+            <a class="button button-primary" data-whatsapp="General enquiry" href="#">WhatsApp</a>
+            <a class="button button-outline" href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noreferrer">
+              Instagram
+            </a>
+            <p class="location-text">WhatsApp: +971 52 833 8455</p>
+            <p class="location-text">Location: Dubai, UAE</p>
+          </div>
+          <form class="enquiry-form">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input type="tel" name="phone" placeholder="Your WhatsApp number" required />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="4" placeholder="Tell us what you are looking for"></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send Enquiry</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Replica Gallery. Premium product showcase.</p>
+    </footer>
+
+    <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-backdrop" data-close-modal></div>
+      <article class="modal-card">
+        <button class="modal-close" type="button" aria-label="Close product details" data-close-modal>&times;</button>
+        <div class="modal-image" id="modalImage"></div>
+        <div class="modal-content">
+          <p class="product-category" id="modalCategory"></p>
+          <h3 id="modalTitle"></h3>
+          <p id="modalDescription"></p>
+          <a class="button button-primary" id="modalWhatsapp" href="#" target="_blank" rel="noreferrer">Enquire on WhatsApp</a>
+        </div>
+      </article>
+    </div>
+
+    <script src="products-data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
