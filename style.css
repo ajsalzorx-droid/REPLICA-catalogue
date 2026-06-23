@@ -915,8 +915,9 @@ body.modal-lock {
   }
 
   .hero {
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-    gap: clamp(28px, 5vw, 72px);
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 0.85fr);
+    align-items: center;
+    gap: clamp(36px, 5vw, 76px);
     min-height: calc(100svh - 72px);
     padding: clamp(54px, 12vw, 110px) clamp(18px, 5vw, 64px) 38px;
     text-align: left;
@@ -932,9 +933,15 @@ body.modal-lock {
   }
 
   .hero-showcase {
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: minmax(0, 1.12fr) minmax(170px, 0.68fr);
     width: auto;
+    justify-self: end;
+    align-self: center;
     margin-top: 0;
+  }
+
+  .showcase-stack {
+    grid-template-columns: 1fr;
   }
 
   .showcase-card-large {
@@ -942,6 +949,7 @@ body.modal-lock {
   }
 
   .showcase-card-small {
+    aspect-ratio: auto;
     min-height: 150px;
   }
 
@@ -1053,7 +1061,7 @@ body.modal-lock {
 
   .hero {
     min-height: calc(100svh - 74px);
-    gap: 42px;
+    gap: 46px;
     padding-block: 58px 34px;
   }
 
