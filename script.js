@@ -8,11 +8,13 @@ const products = window.CATALOGUE_PRODUCTS || [];
 
 let activeCategory = "All";
 let activeSearch = "";
+let visibleLimit = 0;
 
 const categoryGrid = document.querySelector("#categoryGrid");
 const filterRow = document.querySelector("#filterRow");
 const productGrid = document.querySelector("#productGrid");
 const emptyState = document.querySelector("#emptyState");
+const loadMoreButton = document.querySelector("#loadMoreButton");
 const productSearch = document.querySelector("#productSearch");
 const modal = document.querySelector("#productModal");
 const menuToggle = document.querySelector(".menu-toggle");
@@ -25,9 +27,19 @@ function whatsappUrl(productName) {
 function productArtwork(product) {
   return `
     <div class="product-image">
-      <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" />
+      <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" width="640" height="500" />
     </div>
   `;
+}
+
+function initialProductLimit() {
+  if (window.matchMedia("(min-width: 1120px)").matches) return 36;
+  if (window.matchMedia("(min-width: 760px)").matches) return 24;
+  return 12;
+}
+
+function resetProductLimit() {
+  visibleLimit = initialProductLimit();
 }
 
 function renderCategories() {
@@ -75,7 +87,8 @@ function filteredProducts() {
 
 function renderProducts() {
   const visibleProducts = filteredProducts();
-  productGrid.innerHTML = visibleProducts
+  const renderedProducts = visibleProducts.slice(0, visibleLimit);
+  productGrid.innerHTML = renderedProducts
     .map(
       (product) => `
         <article class="product-card" data-product-id="${product.id}">
@@ -100,10 +113,13 @@ function renderProducts() {
     )
     .join("");
   emptyState.hidden = visibleProducts.length > 0;
+  loadMoreButton.hidden = visibleProducts.length <= visibleLimit;
+  loadMoreButton.textContent = `Load more (${visibleProducts.length - renderedProducts.length} remaining)`;
 }
 
 function setCategory(category) {
   activeCategory = category;
+  resetProductLimit();
   renderFilters();
   renderProducts();
   document.querySelector("#catalogue").scrollIntoView({ behavior: "smooth" });
@@ -165,17 +181,27 @@ document.addEventListener("click", (event) => {
 
 productSearch.addEventListener("input", (event) => {
   activeSearch = event.target.value;
+  resetProductLimit();
   renderProducts();
 });
 
 menuToggle.addEventListener("click", () => {
   const isOpen = siteNav.classList.toggle("is-open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+  document.body.classList.toggle("menu-lock", isOpen);
 });
 
 siteNav.addEventListener("click", () => {
   siteNav.classList.remove("is-open");
   menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open menu");
+  document.body.classList.remove("menu-lock");
+});
+
+loadMoreButton.addEventListener("click", () => {
+  visibleLimit += initialProductLimit();
+  renderProducts();
 });
 
 document.addEventListener("keydown", (event) => {
@@ -193,5 +219,6 @@ document.querySelector(".enquiry-form").addEventListener("submit", (event) => {
 
 renderCategories();
 renderFilters();
+resetProductLimit();
 renderProducts();
 hydrateWhatsappLinks();

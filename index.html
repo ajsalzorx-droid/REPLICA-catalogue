@@ -17,7 +17,7 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#home" aria-label="Replica Gallery home">
-        <img src="assets/brand/replica-gallery-logo.png" alt="Replica Gallery" />
+        <img src="assets/brand/replica-gallery-logo.png" alt="Replica Gallery" width="3576" height="916" />
       </a>
       <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
         <span></span>
@@ -44,16 +44,31 @@
         </div>
         <div class="hero-showcase" aria-label="Featured catalogue preview">
           <div class="showcase-card showcase-card-large">
-            <img src="assets/catalogue/09_Display_Showroom_Marketing/IMG-20260621-WA0133.jpg" alt="Display catalogue preview" />
+            <img
+              src="assets/catalogue/09_Display_Showroom_Marketing/IMG-20260621-WA0133.jpg"
+              alt="Display catalogue preview"
+              fetchpriority="high"
+              decoding="async"
+            />
             <span>Display Catalogue</span>
           </div>
           <div class="showcase-stack">
             <div class="showcase-card showcase-card-small">
-              <img src="assets/catalogue/02_Cakes_Desserts_Sweets/IMG-20260621-WA0141.jpg" alt="Cakes and sweets catalogue preview" />
+              <img
+                src="assets/catalogue/02_Cakes_Desserts_Sweets/IMG-20260621-WA0141.jpg"
+                alt="Cakes and sweets catalogue preview"
+                loading="lazy"
+                decoding="async"
+              />
               <span>Cakes & Sweets</span>
             </div>
             <div class="showcase-card showcase-card-small accent">
-              <img src="assets/catalogue/08_Keychains_Accessories/IMG-20260621-WA0134.jpg" alt="Accessories catalogue preview" />
+              <img
+                src="assets/catalogue/08_Keychains_Accessories/IMG-20260621-WA0134.jpg"
+                alt="Accessories catalogue preview"
+                loading="lazy"
+                decoding="async"
+              />
               <span>Accessories</span>
             </div>
           </div>
@@ -81,6 +96,7 @@
         </div>
         <div class="filter-row" id="filterRow" aria-label="Filter products by category"></div>
         <div class="product-grid" id="productGrid"></div>
+        <button class="button button-outline load-more" id="loadMoreButton" type="button" hidden>Load more</button>
         <p class="empty-state" id="emptyState" hidden>No products match your search.</p>
       </section>
 
@@ -131,6 +147,10 @@
     <footer class="site-footer">
       <p>&copy; 2026 Replica Gallery. Premium product showcase.</p>
     </footer>
+
+    <a class="floating-whatsapp" data-whatsapp="General enquiry" href="#" aria-label="Contact Replica Gallery on WhatsApp">
+      WhatsApp
+    </a>
 
     <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-backdrop" data-close-modal></div>
