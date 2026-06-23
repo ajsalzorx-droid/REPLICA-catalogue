@@ -159,6 +159,7 @@ body.menu-lock {
   display: grid;
   min-height: auto;
   padding: 30px clamp(16px, 5vw, 64px) 28px;
+  overflow: hidden;
   background:
     radial-gradient(circle at 78% 18%, rgba(184, 34, 31, 0.12), transparent 30%),
     linear-gradient(135deg, #ffffff 0%, #fff8f8 54%, #f7e7e6 100%);
@@ -264,6 +265,8 @@ h2 {
   align-self: end;
   width: min(100%, 520px);
   margin: 24px auto 0;
+  perspective: 1000px;
+  animation: showcaseReveal 700ms ease both;
 }
 
 .showcase-stack {
@@ -281,12 +284,26 @@ h2 {
   border-radius: var(--radius);
   background: var(--white);
   box-shadow: 0 18px 48px rgba(184, 34, 31, 0.1);
+  transform: translateZ(0);
+  animation: premiumFloat 5.8s ease-in-out infinite;
+}
+
+.showcase-card::before {
+  content: "";
+  position: absolute;
+  inset: -45% -90%;
+  z-index: 1;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.34) 50%, transparent 58%);
+  transform: translateX(-65%) rotate(8deg);
+  animation: cardSheen 4.6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .showcase-card::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.62));
 }
 
@@ -303,7 +320,7 @@ h2 {
   position: absolute;
   left: 16px;
   bottom: 14px;
-  z-index: 1;
+  z-index: 2;
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.82rem;
   font-weight: 700;
@@ -320,6 +337,60 @@ h2 {
 
 .showcase-card.accent {
   background: #101010;
+}
+
+.showcase-stack .showcase-card:first-child {
+  animation-delay: 420ms;
+}
+
+.showcase-stack .showcase-card:last-child {
+  animation-delay: 840ms;
+}
+
+.hero-showcase:hover .showcase-card {
+  animation-play-state: paused;
+  transform: translateY(-4px) scale(1.01);
+}
+
+@keyframes showcaseReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes premiumFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cardSheen {
+  0%,
+  52% {
+    transform: translateX(-65%) rotate(8deg);
+    opacity: 0;
+  }
+
+  63% {
+    opacity: 1;
+  }
+
+  78%,
+  100% {
+    transform: translateX(65%) rotate(8deg);
+    opacity: 0;
+  }
 }
 
 .section {
